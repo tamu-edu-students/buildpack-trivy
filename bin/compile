@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
-#refrence from https://github.com/heroku/heroku-buildpack-nodejs/blob/main/bin/compile and https://aquasecurity.github.io/trivy/v0.56/getting-started/installation/
+
 set -e
 unset GIT_DIR
-
 BUILD_DIR=$1
 CACHE_DIR=$2
-
 TRIVY_VERSION="0.40.0" 
 TRIVY_URL="https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
-
-mkdir -p "$BUILD_DIR/bin"
-echo "Downloading Trivy version ${TRIVY_VERSION}..."
+mkdir -p "${BUILD_DIR}/.profile.d"
+echo "-------------------- Downloading Trivy version ${TRIVY_VERSION} ------------------------------------"
 curl -L "${TRIVY_URL}" | tar xz -C "$BUILD_DIR/bin"
-echo "export PATH=\"$BUILD_DIR/bin:\$PATH\"" > "$BUILD_DIR/.profile.d/trivy.sh"
+echo "export PATH=\"\$PATH:$BUILD_DIR/bin\"" > "$BUILD_DIR/.profile.d/trivy.sh"
+chmod +x "$BUILD_DIR/.profile.d/trivy.sh"
 exit 0
