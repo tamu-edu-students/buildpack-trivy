@@ -1,0 +1,2 @@
+echo "installing trivy"
+exit 0
