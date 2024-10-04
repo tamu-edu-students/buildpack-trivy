@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#refrence from https://github.com/heroku/heroku-buildpack-nodejs/blob/main/bin/compile and https://aquasecurity.github.io/trivy/v0.56/getting-started/installation/
 set -e
 
 
